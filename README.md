@@ -1,4 +1,4 @@
-# princeton_Coursera_Percaulation
+# princeton_Coursera_Percolation
 this assignment was developed by Bob Sedgewick and Kevin Wayne. 
 https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php
 
