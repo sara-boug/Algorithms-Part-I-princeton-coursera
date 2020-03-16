@@ -1,8 +1,8 @@
 
-public class quick_union {
+public class quick_weightedUnion {
 	public int[] id; 
      public int[] sz; 
-	public quick_union(int n) {
+	public quick_weightedUnion(int n) {
 		id=new int[n];
 		sz= new int[n];
 		
@@ -11,22 +11,23 @@ public class quick_union {
 	
 	public  int root(int i ) { 
 		while(i != id[i] ) { 
-		 id[i] = id[id[i]];
+		
 		 i=id[i];
 		}
 		return i ; 
 	}
 	
     public boolean find(int q , int p )  {
+    	System.out.print( id[q] +" " +id[p] );
     	return id[q] ==id[p]; 
     }
     
     public void unite(int q , int p ) { 
     	int i = root(q); 
     	int j = root(p); 
-         id[i]=j;
 
-    	if(sz[i]<sz[j]) { 
+   	if(sz[i]<=sz[j]) { 
+  
             id[i]= j; 
             
             sz[j]+=sz[i];
@@ -36,7 +37,7 @@ public class quick_union {
             id[j]= i; 
             sz[i]+=sz[j];
 
-    	}
+    	} 
     	
     }
 }
