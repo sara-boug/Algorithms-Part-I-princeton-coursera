@@ -1,3 +1,4 @@
+package week1;
 class site { 
 	      public  int root ;
 	      public   int  blocked=1; 

@@ -1,3 +1,4 @@
+package week1;
 
 public class quick_weightedUnion {
 	public int[] id; 
