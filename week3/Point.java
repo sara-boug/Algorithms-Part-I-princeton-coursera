@@ -2,6 +2,10 @@ package week3;
 
 import java.util.Comparator;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
 public class Point  implements Comparable<Point>{
 	public float x; 
 	public float y; 
@@ -11,6 +15,22 @@ public class Point  implements Comparable<Point>{
 		this.y= y; 
 
 	}	
+	public Circle  draw() { 
+		Circle c= new Circle(); 
+		c.setCenterX(this.x);
+		c.setCenterY(this.y); 
+		c.setRadius(2);
+		c.setFill(Color.BLACK);
+		return c; 
+	}
+	public Line drawTo(Point p) { 
+		Line l = new Line(); 
+		l.setStartX(this.x); 
+		l.setStartY(this.y); 
+		l.setEndX(p.x);
+		l.setEndY(p.y);
+		return l; 
+	}
 	public int compareTo(Point p) { 	
 		if(this.y>p.y) {
 			return 1; 
