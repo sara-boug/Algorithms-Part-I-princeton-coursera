@@ -18,17 +18,18 @@ public class Main extends Application {
 		Group group = new Group() ;  	
   int x = 0,y=0; 
 		for(int i=0; i < n; i++) {
-			 x+= (int)(Math.random()*10);
-		     y+=(int)(Math.random()*10);
+			 x= (int)(Math.random()*400);
+		     y=(int)(Math.random()*400);
 
 
 			Point p=new Point(x,y);
 			points[i]= p ; 
 			group.getChildren().add(p.draw());
 		}
-		FastCollinearPoints fcp = new FastCollinearPoints(points); 
-		group.getChildren().add(fcp.findAllSegment());
-		fcp.filterPath();
+		//FastCollinearPoints fcp = new FastCollinearPoints(points); 
+		BruteCollinearPoints bcp = new BruteCollinearPoints(points);
+		group.getChildren().add(bcp.numberSeg());
+		//fcp.filterPath();
 		Scene scene= new Scene(group, 400, 400,Color.AZURE);
 		stage.setScene(scene);
 		stage.show();

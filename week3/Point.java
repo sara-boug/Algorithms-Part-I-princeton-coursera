@@ -11,14 +11,19 @@ public class Point  implements Comparable<Point>{
 	public int x; 
 	public int y; 	
 	public ArrayList<Point>  collinears;
+	public ArrayList<Float>  slops;
+
 	public Point(int x, int y ) {
 		//System.out.print("x"+ x +" y" + y);
 		this.x= x; 
 		this.y= y; 
-		 collinears= new ArrayList<Point>();;
+		 collinears= new ArrayList<Point>();
+	     slops = new ArrayList<Float>() ; 
+
 
 	}	
-	public Circle  draw() { 
+	public Circle  draw() {
+
 		Circle c= new Circle(); 
 		c.setCenterX(this.x);
 		c.setCenterY(this.y); 
@@ -27,12 +32,16 @@ public class Point  implements Comparable<Point>{
 		return c; 
 	}
 	public Line drawTo(Point p) { 
+		int arg1 = (int) (Math.random()*255); 
+		int arg2 = (int) (Math.random()*255); 
+		int arg3 = (int) (Math.random()*255); 
+
 		Line l = new Line(); 
 		l.setStartX(this.x); 
 		l.setStartY(this.y); 
 		l.setEndX(p.x);
 		l.setEndY(p.y);
-		l.setFill(Color.BLACK);
+		l.setFill(Color.rgb(255, arg2, arg3));
 		return l; 
 	}
 	public int compareTo(Point p) { 	
@@ -59,7 +68,7 @@ public class Point  implements Comparable<Point>{
       return new Comparator<Point> () {
 		@Override
 		public int compare(Point p1, Point p2) {
-            return  (int) (p2.slopeTo(p)-p1.slopeTo(p));
+            return  Double.compare(p2.slopeTo(p),p1.slopeTo(p));
  			 
 		} 
    	  
