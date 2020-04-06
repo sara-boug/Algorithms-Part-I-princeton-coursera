@@ -1,5 +1,6 @@
 package week3;
 
+ 
 import javafx.scene.shape.Line;
 
 public class LineSegment {
@@ -14,11 +15,6 @@ public class LineSegment {
 	public Line  draw() { 
 		Line l =   this.p1.drawTo(this.p2); 
 		return l ; 
-	}
- 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

@@ -1,5 +1,6 @@
 package week3;
 
+ import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.scene.paint.Color;
@@ -7,20 +8,22 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 public class Point  implements Comparable<Point>{
-	public float x; 
-	public float y; 
-
-	public Point(float x, float y ) {
+	public int x; 
+	public int y; 	
+	public ArrayList<Point>  collinears;
+	public Point(int x, int y ) {
+		//System.out.print("x"+ x +" y" + y);
 		this.x= x; 
 		this.y= y; 
+		 collinears= new ArrayList<Point>();;
 
 	}	
 	public Circle  draw() { 
 		Circle c= new Circle(); 
 		c.setCenterX(this.x);
 		c.setCenterY(this.y); 
-		c.setRadius(2);
-		c.setFill(Color.BLACK);
+		c.setRadius(3);
+		c.setFill(Color.ORANGE);
 		return c; 
 	}
 	public Line drawTo(Point p) { 
@@ -29,6 +32,7 @@ public class Point  implements Comparable<Point>{
 		l.setStartY(this.y); 
 		l.setEndX(p.x);
 		l.setEndY(p.y);
+		l.setFill(Color.BLACK);
 		return l; 
 	}
 	public int compareTo(Point p) { 	
@@ -41,10 +45,12 @@ public class Point  implements Comparable<Point>{
 
 		}
 	}
-	public double slopeTo(Point  p)  { //formula slope= (y1-y2)/(x1-x2)
-		double slope= (p.y-this.y)/(p.x-this.x); 
-		slope=   Math.sqrt(slope*slope); 
-		return slope; 
+	public float slopeTo(Point  p)  { //formula slope= (y1-y2)/(x1-x2)
+		
+		float slope=(float) (p.y-this.y)/(p.x-this.x); 
+         slope=Math.round(slope*100); 
+         slope=slope/100;
+ 		return slope; 
 
 	}
 	public Comparator<Point> slopeOrder() {
@@ -53,7 +59,7 @@ public class Point  implements Comparable<Point>{
       return new Comparator<Point> () {
 		@Override
 		public int compare(Point p1, Point p2) {
-            return  Double.compare(p1.slopeTo(p), (  p2.slopeTo(p)));
+            return  (int) (p2.slopeTo(p)-p1.slopeTo(p));
  			 
 		} 
    	  
