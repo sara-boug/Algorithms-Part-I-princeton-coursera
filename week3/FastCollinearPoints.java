@@ -18,7 +18,8 @@ public class FastCollinearPoints {
 		for(int i=0; i<size; i++) { 
 			Point p= pointClone[i];
 			Arrays.sort(pointClone, p.slopeOrder());//log n
-			
+			Arrays.sort(this.point, p.slopeOrder());//log n
+
 			 group.getChildren().add(drawLine(pointClone, p)); 
 			System.out.println(" "); 
 		}

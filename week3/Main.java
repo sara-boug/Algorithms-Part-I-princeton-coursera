@@ -26,9 +26,11 @@ public class Main extends Application {
 			points[i]= p ; 
 			group.getChildren().add(p.draw());
 		}
-		//FastCollinearPoints fcp = new FastCollinearPoints(points); 
+		FastCollinearPoints fcp = new FastCollinearPoints(points); 
 		BruteCollinearPoints bcp = new BruteCollinearPoints(points);
 		group.getChildren().add(bcp.numberSeg());
+		group.getChildren().add(fcp.findAllSegment());
+
 		//fcp.filterPath();
 		Scene scene= new Scene(group, 400, 400,Color.AZURE);
 		stage.setScene(scene);
