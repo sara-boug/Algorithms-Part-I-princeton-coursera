@@ -89,16 +89,16 @@ public class Board {
 	}
 	public ArrayList<Board> generateNeighbours(int row , int column) { 
 		ArrayList<Board> boards= new ArrayList<Board>();
-		 if(row+1<dimension()) { 
+		 if(row+1<dimension() && countManhattan(row+1,column)!=0) { 
 			 boards.add(swip(row , column, row+1, column)); 
 		 }
-		 if(row-1>=0) { 
+		 if(row-1>=0 && countManhattan(row-1,column)!=0) { 
 			 boards.add(swip(row , column, row-1, column)); 
 		 }
-		 if(column+1<dimension()) { 
+		 if(column+1<dimension() && countManhattan(row,column+1)!=0) { 
 			 boards.add(swip(row , column, row, column+1)); 
 		 }
-		 if(column-1>=0) { 
+		 if(column-1>=0 && countManhattan(row,column-1)!=0) { 
 			 boards.add(swip(row , column, row, column-1)); 
 		 }
  		return boards ;
@@ -128,14 +128,13 @@ public class Board {
 		};
 	}
 	public static void main(String[] args) {
-      int[][] board = {{1,2,3}, {7,0,6} ,{5,4,8 } }; 
-      Board b= new Board(board); 
+      int[][] board = {{0,1,3}, {4,2,5} ,{7,8,6}}; 
+      Board b= new Board(board);
       System.out.println(b.toString());
       System.out.println(b.manhattan());
        Iterator<Board> i= b.neighbours().iterator();
-       while( i.hasNext()) { 
-         	  System.out.print( i.next());
-        }
+       Solver solver = new Solver(b); 
+ 
         
 	}
 
