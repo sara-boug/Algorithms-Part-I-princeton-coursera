@@ -13,8 +13,8 @@ public class Board {
 	public String toString() { 
 		String string=""; 
 		for(int row=0; row<dimension(); row++) { 
-		 string+=	Arrays.toString(board[row]);
-		 string+="\n";
+			string+=	Arrays.toString(board[row]);
+			string+="\n";
 		}
 		return string;  
 	}
@@ -70,42 +70,41 @@ public class Board {
 		}
 	}
 	public Board swip(int row, int column , int row1 , int column1 ) { 
-		
+
 		int[][] b= new int[dimension()][dimension()]; 
 		for(int i=0; i<dimension(); i++) {   // the most suitable way to coppy an array , it allow not modifying the global array 
 			for(int j=0; j<dimension(); j++) { 
-                b[i][j]=board[i][j];
+				b[i][j]=board[i][j];
 			}
 		}
-		
+
 		int val= b[row][column]; 
 		int val1=  b[row1][column1] ;
 		b[row1][column1]=val; 
 		b[row][column] = val1; 
 		Board brd = new Board(b);
-		System.out.println(brd.toString());
 
 		return brd; 
 	}
 	public ArrayList<Board> generateNeighbours(int row , int column) { 
 		ArrayList<Board> boards= new ArrayList<Board>();
-		 if(row+1<dimension() && countManhattan(row+1,column)!=0) { 
-			 boards.add(swip(row , column, row+1, column)); 
-		 }
-		 if(row-1>=0 && countManhattan(row-1,column)!=0) { 
-			 boards.add(swip(row , column, row-1, column)); 
-		 }
-		 if(column+1<dimension() && countManhattan(row,column+1)!=0) { 
-			 boards.add(swip(row , column, row, column+1)); 
-		 }
-		 if(column-1>=0 && countManhattan(row,column-1)!=0) { 
-			 boards.add(swip(row , column, row, column-1)); 
-		 }
- 		return boards ;
+		if(row+1<dimension() && countManhattan(row+1,column)!=0) { 
+			boards.add(swip(row , column, row+1, column)); 
+		}
+		if(row-1>=0 && countManhattan(row-1,column)!=0) { 
+			boards.add(swip(row , column, row-1, column)); 
+		}
+		if(column+1<dimension() && countManhattan(row,column+1)!=0) { 
+			boards.add(swip(row , column, row, column+1)); 
+		}
+		if(column-1>=0 && countManhattan(row,column-1)!=0) { 
+			boards.add(swip(row , column, row, column-1)); 
+		}
+		return boards ;
 	}
 	public  Iterable<Board> neighbours(){ 
 		return new  Iterable<Board>(){
-		  Iterator<Board> iterator;
+			Iterator<Board> iterator;
 			@Override
 			public Iterator<Board> iterator() {
 				boolean found= false; 
@@ -121,21 +120,25 @@ public class Board {
 					}
 					if(found==true) break; 		        	
 				}
-				 
-			iterator= generateNeighbours(Row,Column).iterator();	
- 				return iterator; 
+
+				iterator= generateNeighbours(Row,Column).iterator();	
+				return iterator; 
 			} 
 		};
 	}
 	public static void main(String[] args) {
-      int[][] board = {{0,1,3}, {4,2,5} ,{7,8,6}}; 
-      Board b= new Board(board);
-      System.out.println(b.toString());
-      System.out.println(b.manhattan());
-       Iterator<Board> i= b.neighbours().iterator();
-       Solver solver = new Solver(b); 
- 
-        
+		int[][] board = {{0,1,3}, {4,2,5} ,{7,8,6}}; 
+		Board b= new Board(board);
+		System.out.println(b.toString());
+		System.out.println(b.manhattan());
+		Solver i=  new Solver(b); 
+		Iterator<Board> sol= i.solution().iterator();
+		 
+	 	while(sol.hasNext()) { 
+			  System.out.println(sol.next().toString()); 
+		} 
+
+
 	}
 
 }

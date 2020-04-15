@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MinPq {
 	ArrayList<Round> array ; 
 	public MinPq() {
-		 array = new ArrayList<Round>(); 
+		array = new ArrayList<Round>(); 
 	}
 
 	public Round removeMin() { 
@@ -19,7 +19,7 @@ public class MinPq {
 		element= array.get(min); 
 		array.remove(min); 
 		return element; 
-		
+
 	}
 	public void add(Round element) { 
 		array.add(element); 
